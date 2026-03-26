@@ -3,6 +3,7 @@ import { useUiStore } from '../../store/uiStore'
 import { useDesignStore } from '../../store/designStore'
 import { LanguageSwitcher } from '../shared/LanguageSwitcher'
 import { Logo } from '../shared/Logo'
+import { useIsMobile } from '../../hooks/useIsMobile'
 
 const STEPS_KEYS = [
   { num: 1, key: 'steps.selectEquipment' },
@@ -12,6 +13,7 @@ const STEPS_KEYS = [
 
 export function Header() {
   const { t } = useTranslation()
+  const isMobile = useIsMobile()
   const currentStep = useUiStore((s) => s.currentStep)
   const goToStep = useUiStore((s) => s.goToStep)
   const shareUrl = useUiStore((s) => s.shareUrl)
@@ -34,14 +36,14 @@ export function Header() {
 
   return (
     <header style={{
-      height: 56,
+      height: isMobile ? 48 : 56,
       background: 'var(--glass-bg)',
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
       display: 'flex',
       alignItems: 'center',
-      padding: '0 20px',
-      gap: 12,
+      padding: isMobile ? '0 10px' : '0 20px',
+      gap: isMobile ? 6 : 12,
       flexShrink: 0,
       borderBottom: '1px solid var(--border-medium)',
       zIndex: 50,
@@ -60,7 +62,7 @@ export function Header() {
             <div key={step.num} style={{ display: 'flex', alignItems: 'center' }}>
               {i > 0 && (
                 <div style={{
-                  width: 40, height: 1,
+                  width: isMobile ? 20 : 40, height: 1,
                   background: done || active ? 'var(--border-strong)' : 'var(--border-subtle)',
                   transition: 'background 0.3s',
                 }} />
@@ -88,14 +90,16 @@ export function Header() {
                 }}>
                   {done ? '✓' : step.num}
                 </div>
-                <div style={{
-                  fontSize: 10, fontWeight: active ? 700 : 500,
-                  color: active ? 'var(--text-primary)' : done ? 'var(--text-secondary)' : 'var(--text-tertiary)',
-                  whiteSpace: 'nowrap', fontFamily: 'Heebo, sans-serif',
-                  transition: 'color 0.2s',
-                }}>
-                  {t(step.key)}
-                </div>
+                {!isMobile && (
+                  <div style={{
+                    fontSize: 10, fontWeight: active ? 700 : 500,
+                    color: active ? 'var(--text-primary)' : done ? 'var(--text-secondary)' : 'var(--text-tertiary)',
+                    whiteSpace: 'nowrap', fontFamily: 'Heebo, sans-serif',
+                    transition: 'color 0.2s',
+                  }}>
+                    {t(step.key)}
+                  </div>
+                )}
               </button>
             </div>
           )
@@ -127,24 +131,28 @@ export function Header() {
         )}
 
         {/* History */}
-        <button
-          onClick={openHistory}
-          title={t('history.title')}
-          style={iconBtn}
-        >
-          📋
-        </button>
+        {!isMobile && (
+          <button
+            onClick={openHistory}
+            title={t('history.title')}
+            style={iconBtn}
+          >
+            📋
+          </button>
+        )}
 
         {/* Dark mode toggle */}
-        <button
-          onClick={toggleDarkMode}
-          title={isDarkMode ? 'Light Mode' : 'Dark Mode'}
-          style={iconBtn}
-        >
-          {isDarkMode ? '☀️' : '🌙'}
-        </button>
+        {!isMobile && (
+          <button
+            onClick={toggleDarkMode}
+            title={isDarkMode ? 'Light Mode' : 'Dark Mode'}
+            style={iconBtn}
+          >
+            {isDarkMode ? '☀️' : '🌙'}
+          </button>
+        )}
 
-        <LanguageSwitcher />
+        {!isMobile && <LanguageSwitcher />}
 
         {shareUrl && (
           <button

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { fetchCategories, fetchEquipment } from '../../lib/api'
 import { useDesignStore } from '../../store/designStore'
 import { useUiStore } from '../../store/uiStore'
+import { useIsMobile } from '../../hooks/useIsMobile'
 import type { Category, Equipment } from '../../types'
 import { EquipmentCard } from './EquipmentCard'
 import { Logo } from '../shared/Logo'
@@ -25,6 +26,7 @@ export function CatalogPanel() {
   const goNextStep = useUiStore((s) => s.goNextStep)
   const catalogView = useUiStore((s) => s.catalogView)
   const setCatalogView = useUiStore((s) => s.setCatalogView)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     fetchCategories().then(setCategories).catch(console.error)
@@ -50,9 +52,9 @@ export function CatalogPanel() {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', background: 'var(--bg-1)' }}>
 
       {/* Header */}
-      <div style={{ padding: '18px 20px 14px', borderBottom: '1px solid var(--border-medium)', flexShrink: 0, background: 'var(--bg-0)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-          <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-primary)' }}>{t('catalog.title')}</div>
+      <div style={{ padding: isMobile ? '12px 12px 10px' : '18px 20px 14px', borderBottom: '1px solid var(--border-medium)', flexShrink: 0, background: 'var(--bg-0)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: isMobile ? 10 : 14 }}>
+          <div style={{ fontSize: isMobile ? 16 : 20, fontWeight: 800, color: 'var(--text-primary)' }}>{t('catalog.title')}</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             {/* Grid/List toggle */}
             <div style={{
@@ -123,11 +125,11 @@ export function CatalogPanel() {
       </div>
 
       {/* Equipment grid/list */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
+      <div style={{ flex: 1, overflowY: 'auto', padding: isMobile ? '12px' : '20px' }}>
         {loading ? (
-          <div style={{ display: 'grid', gridTemplateColumns: catalogView === 'grid' ? 'repeat(2, 1fr)' : '1fr', gap: catalogView === 'grid' ? 16 : 8 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: catalogView === 'grid' ? (isMobile ? 'repeat(2, 1fr)' : 'repeat(2, 1fr)') : '1fr', gap: catalogView === 'grid' ? (isMobile ? 10 : 16) : 8 }}>
             {[...Array(6)].map((_, i) => (
-              <div key={i} style={{ height: catalogView === 'grid' ? 290 : 80, background: 'var(--bg-2)', borderRadius: 14, opacity: 0.6 }} />
+              <div key={i} style={{ height: catalogView === 'grid' ? (isMobile ? 220 : 290) : 80, background: 'var(--bg-2)', borderRadius: 14, opacity: 0.6 }} />
             ))}
           </div>
         ) : filtered.length === 0 ? (
@@ -135,9 +137,9 @@ export function CatalogPanel() {
         ) : (
           <div style={{
             display: catalogView === 'grid' ? 'grid' : 'flex',
-            gridTemplateColumns: catalogView === 'grid' ? 'repeat(2, 1fr)' : undefined,
+            gridTemplateColumns: catalogView === 'grid' ? (isMobile ? 'repeat(2, 1fr)' : 'repeat(2, 1fr)') : undefined,
             flexDirection: catalogView === 'list' ? 'column' : undefined,
-            gap: catalogView === 'grid' ? 16 : 8,
+            gap: catalogView === 'grid' ? (isMobile ? 10 : 16) : 8,
           }}>
             {filtered.map((eq) => (
               <EquipmentCard
@@ -164,7 +166,7 @@ export function CatalogPanel() {
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
         borderTop: '1px solid var(--border-medium)',
-        padding: '14px 20px',
+        padding: isMobile ? '10px 12px' : '14px 20px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useIsMobile } from '../../hooks/useIsMobile'
 import type { Equipment } from '../../types'
 
 const FALLBACK_ICONS: Record<string, string> = {
@@ -24,6 +25,7 @@ interface Props {
 
 export function EquipmentCard({ equipment: eq, onAdd, onRemove, cartQuantity = 0, variant = 'grid', draggable, onDragStart }: Props) {
   const { t } = useTranslation()
+  const isMobile = useIsMobile()
   const [imgError, setImgError] = useState(false)
   const [hovered, setHovered] = useState(false)
   const color = eq.model_type?.fallback_color ?? '#5588bb'
@@ -166,7 +168,7 @@ export function EquipmentCard({ equipment: eq, onAdd, onRemove, cartQuantity = 0
       }}
     >
       {/* Image */}
-      <div style={{ height: 150, background: 'var(--bg-1)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative' }}>
+      <div style={{ height: isMobile ? 110 : 150, background: 'var(--bg-1)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative' }}>
         {eq.image_url && !imgError ? (
           <img src={eq.image_url} alt={eq.name_he} referrerPolicy="no-referrer" onError={() => setImgError(true)}
             style={{ width: '100%', height: '100%', objectFit: 'contain', padding: 8 }} />
@@ -186,19 +188,21 @@ export function EquipmentCard({ equipment: eq, onAdd, onRemove, cartQuantity = 0
       </div>
 
       {/* Info */}
-      <div style={{ padding: '12px 12px 8px', flex: 1, direction: 'rtl' }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{eq.name_he}</div>
-        {eq.brand && <div style={{ fontSize: 11, color: 'var(--text-secondary)', marginBottom: 4 }}>{eq.brand.name}</div>}
-        <div style={{ fontSize: 10, color: 'var(--text-tertiary)', direction: 'ltr', marginBottom: 8 }}>
-          {eq.width_cm && eq.depth_cm && eq.height_cm ? `${eq.width_cm}×${eq.depth_cm}×${eq.height_cm} ${t('catalog.cm')}` : ''}
-        </div>
-        <div style={{ fontSize: 15, fontWeight: 800, color: '#E30613', direction: 'ltr' }}>
+      <div style={{ padding: isMobile ? '8px 8px 4px' : '12px 12px 8px', flex: 1, direction: 'rtl' }}>
+        <div style={{ fontSize: isMobile ? 11 : 13, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{eq.name_he}</div>
+        {eq.brand && <div style={{ fontSize: isMobile ? 10 : 11, color: 'var(--text-secondary)', marginBottom: isMobile ? 2 : 4 }}>{eq.brand.name}</div>}
+        {!isMobile && (
+          <div style={{ fontSize: 10, color: 'var(--text-tertiary)', direction: 'ltr', marginBottom: 8 }}>
+            {eq.width_cm && eq.depth_cm && eq.height_cm ? `${eq.width_cm}×${eq.depth_cm}×${eq.height_cm} ${t('catalog.cm')}` : ''}
+          </div>
+        )}
+        <div style={{ fontSize: isMobile ? 13 : 15, fontWeight: 800, color: '#E30613', direction: 'ltr' }}>
           {eq.price != null ? `₪${Number(eq.price).toLocaleString()}` : 'צור קשר'}
         </div>
       </div>
 
       {/* Add/Qty controls */}
-      <div style={{ padding: '0 12px 12px', direction: 'ltr' }}>
+      <div style={{ padding: isMobile ? '0 8px 8px' : '0 12px 12px', direction: 'ltr' }}>
         {!inCart ? (
           <button
             onClick={onAdd}

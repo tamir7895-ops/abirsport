@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useDesignStore } from '../../store/designStore'
 import { useUiStore } from '../../store/uiStore'
+import { useIsMobile } from '../../hooks/useIsMobile'
 import { saveDesign } from '../../lib/api'
 import { exportQuotePdf } from '../../lib/exportPdf'
 import { sendWhatsApp } from '../../lib/whatsapp'
@@ -18,6 +19,7 @@ export function QuotePanel() {
   const roomDepth = useDesignStore((s) => s.roomDepth)
   const roomHeight = useDesignStore((s) => s.roomHeight)
 
+  const isMobile = useIsMobile()
   const isSaving = useUiStore((s) => s.isSaving)
   const setIsSaving = useUiStore((s) => s.setIsSaving)
   const setShareUrl = useUiStore((s) => s.setShareUrl)
@@ -81,28 +83,55 @@ export function QuotePanel() {
     }}>
       {/* Header with brand */}
       <div style={{
-        padding: '20px 32px 16px',
+        padding: isMobile ? '14px 16px 12px' : '20px 32px 16px',
         borderBottom: '1px solid rgba(0,0,0,0.08)',
         flexShrink: 0,
         background: 'linear-gradient(135deg, #ffffff 0%, #fef2f2 100%)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         <div>
-          <div style={{ fontSize: 22, fontWeight: 900, color: '#1a1a2e', marginBottom: 4 }}>{t('quote.title')}</div>
-          <div style={{ fontSize: 13, color: '#6b7280' }}>{placedItems.length} {t('quote.itemsInGym')}</div>
+          <div style={{ fontSize: isMobile ? 18 : 22, fontWeight: 900, color: '#1a1a2e', marginBottom: 4 }}>{t('quote.title')}</div>
+          <div style={{ fontSize: isMobile ? 12 : 13, color: '#6b7280' }}>{placedItems.length} {t('quote.itemsInGym')}</div>
         </div>
-        <Logo size="sm" variant="full" />
+        {!isMobile && <Logo size="sm" variant="full" />}
       </div>
 
-      {/* Table */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '0 32px' }}>
+      {/* Items */}
+      <div style={{ flex: 1, overflowY: 'auto', padding: isMobile ? '0 12px' : '0 32px' }}>
         {placedItems.length === 0 ? (
           <div style={{ textAlign: 'center', color: '#9ca3af', fontSize: 14, paddingTop: 64 }}>
             <div style={{ fontSize: 48, marginBottom: 12 }}>💰</div>
             <div>{t('quote.noItems')}</div>
             <div style={{ fontSize: 12, marginTop: 8 }}>{t('quote.goBackStep2')}</div>
           </div>
+        ) : isMobile ? (
+          /* Mobile: card layout */
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 12 }}>
+            {placedItems.map((item) => (
+              <div key={item.instanceId} style={{
+                background: '#fff', borderRadius: 10,
+                border: '1px solid rgba(0,0,0,0.08)',
+                padding: '12px 14px',
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#1a1a2e' }}>{item.equipment.name_he}</div>
+                    <div style={{ fontSize: 11, color: '#6b7280', marginTop: 2 }}>{item.equipment.brand?.name ?? ''}</div>
+                  </div>
+                  <div style={{ textAlign: 'left', flexShrink: 0, marginRight: 12 }}>
+                    <div style={{ fontSize: 15, fontWeight: 800, color: '#E30613', direction: 'ltr' }}>
+                      {item.equipment.price != null ? `₪${((item.equipment.price) * item.quantity).toLocaleString()}` : '—'}
+                    </div>
+                    <div style={{ fontSize: 10, color: '#9ca3af', direction: 'ltr' }}>
+                      {item.quantity > 1 && item.equipment.price != null ? `${item.quantity} × ₪${Number(item.equipment.price).toLocaleString()}` : `${t('quote.qty')}: ${item.quantity}`}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         ) : (
+          /* Desktop: table */
           <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 16 }}>
             <thead>
               <tr style={{ borderBottom: '1px solid rgba(0,0,0,0.1)' }}>
@@ -150,13 +179,13 @@ export function QuotePanel() {
       </div>
 
       {/* Summary + Actions */}
-      <div style={{ flexShrink: 0, borderTop: '1px solid rgba(0,0,0,0.08)', padding: '16px 32px' }}>
+      <div style={{ flexShrink: 0, borderTop: '1px solid rgba(0,0,0,0.08)', padding: isMobile ? '12px' : '16px 32px' }}>
         {/* Price breakdown card */}
         <div style={{
           background: '#ffffff',
           border: '1px solid rgba(0,0,0,0.08)',
-          borderRadius: 12, padding: '14px 20px',
-          marginBottom: 16, maxWidth: 360,
+          borderRadius: 12, padding: isMobile ? '12px 14px' : '14px 20px',
+          marginBottom: isMobile ? 10 : 16, maxWidth: isMobile ? '100%' : 360,
           display: 'flex', flexDirection: 'column', gap: 8,
           boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
         }}>
@@ -175,7 +204,7 @@ export function QuotePanel() {
         </div>
 
         {/* Action bar */}
-        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', direction: 'ltr' }}>
+        <div style={{ display: 'flex', gap: isMobile ? 8 : 10, flexWrap: 'wrap', direction: 'ltr' }}>
           <button
             onClick={goPrevStep}
             onMouseEnter={e => (e.currentTarget.style.background = 'rgba(0,0,0,0.08)')}

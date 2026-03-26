@@ -57,6 +57,11 @@ interface UiStore {
   // Drag from catalog
   dragEquipmentId: string | null
   setDragEquipmentId: (id: string | null) => void
+
+  // Mobile cart drawer
+  isMobileCartOpen: boolean
+  toggleMobileCart: () => void
+  closeMobileCart: () => void
 }
 
 export const useUiStore = create<UiStore>()(
@@ -114,6 +119,10 @@ export const useUiStore = create<UiStore>()(
 
       dragEquipmentId: null,
       setDragEquipmentId: (id) => set({ dragEquipmentId: id }),
+
+      isMobileCartOpen: false,
+      toggleMobileCart: () => set((s) => ({ isMobileCartOpen: !s.isMobileCartOpen })),
+      closeMobileCart: () => set({ isMobileCartOpen: false }),
     }),
     {
       name: 'abir-ui-settings',

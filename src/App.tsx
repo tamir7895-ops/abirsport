@@ -15,6 +15,7 @@ import { SplashScreen } from './components/shared/SplashScreen'
 import type { Template } from './components/shared/TemplatesModal'
 import { useUiStore } from './store/uiStore'
 import { useDesignStore } from './store/designStore'
+import { useIsMobile } from './hooks/useIsMobile'
 import { loadDesign, fetchEquipment } from './lib/api'
 import toast from 'react-hot-toast'
 
@@ -45,6 +46,10 @@ const stepVariants = {
 export default function App() {
   const { t } = useTranslation()
   const [showSplash, setShowSplash] = useState(true)
+  const isMobile = useIsMobile()
+  const isMobileCartOpen = useUiStore((s) => s.isMobileCartOpen)
+  const toggleMobileCart = useUiStore((s) => s.toggleMobileCart)
+  const closeMobileCart = useUiStore((s) => s.closeMobileCart)
   const isRoomSetupOpen = useUiStore((s) => s.isRoomSetupOpen)
   const isShareModalOpen = useUiStore((s) => s.isShareModalOpen)
   const isTemplatesOpen = useUiStore((s) => s.isTemplatesOpen)
@@ -146,10 +151,15 @@ export default function App() {
             )}
 
             {currentStep === 2 && (
-              <motion.div key="step2" {...stepVariants} style={{ display: 'flex', width: '100%', height: '100%' }}>
-                <div style={{ width: 260, flexShrink: 0, overflow: 'hidden', display: 'flex', position: 'relative', zIndex: 20 }}>
-                  <CartPanel />
-                </div>
+              <motion.div key="step2" {...stepVariants} style={{ display: 'flex', width: '100%', height: '100%', position: 'relative' }}>
+                {/* Desktop: sidebar | Mobile: hidden */}
+                {!isMobile && (
+                  <div style={{ width: 260, flexShrink: 0, overflow: 'hidden', display: 'flex', position: 'relative', zIndex: 20 }}>
+                    <CartPanel />
+                  </div>
+                )}
+
+                {/* 3D Scene - always full on mobile */}
                 <div style={{ flex: 1, position: 'relative', overflow: 'hidden', minWidth: 0, zIndex: 1 }}>
                   <ErrorBoundary>
                     <Suspense fallback={
@@ -161,7 +171,69 @@ export default function App() {
                       <Scene />
                     </Suspense>
                   </ErrorBoundary>
+
+                  {/* Mobile: floating cart toggle */}
+                  {isMobile && (
+                    <button
+                      onClick={toggleMobileCart}
+                      style={{
+                        position: 'absolute', bottom: 20, right: 20, zIndex: 30,
+                        width: 56, height: 56, borderRadius: '50%',
+                        background: '#E30613', color: '#fff', border: 'none',
+                        fontSize: 22, cursor: 'pointer',
+                        boxShadow: '0 4px 16px rgba(227,6,19,0.4)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontFamily: 'Heebo, sans-serif',
+                      }}
+                    >
+                      🛒
+                    </button>
+                  )}
                 </div>
+
+                {/* Mobile: bottom drawer */}
+                {isMobile && (
+                  <>
+                    {/* Overlay */}
+                    {isMobileCartOpen && (
+                      <div
+                        onClick={closeMobileCart}
+                        style={{
+                          position: 'absolute', inset: 0, zIndex: 40,
+                          background: 'rgba(0,0,0,0.4)',
+                          transition: 'opacity 0.3s',
+                        }}
+                      />
+                    )}
+                    {/* Drawer */}
+                    <div style={{
+                      position: 'absolute',
+                      bottom: 0, left: 0, right: 0,
+                      height: '55%',
+                      zIndex: 50,
+                      transform: isMobileCartOpen ? 'translateY(0)' : 'translateY(100%)',
+                      transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      borderTopLeftRadius: 20,
+                      borderTopRightRadius: 20,
+                      overflow: 'hidden',
+                      boxShadow: isMobileCartOpen ? '0 -8px 30px rgba(0,0,0,0.2)' : 'none',
+                    }}>
+                      {/* Drawer handle */}
+                      <div
+                        onClick={closeMobileCart}
+                        style={{
+                          height: 32, background: 'var(--bg-0)',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          cursor: 'pointer', flexShrink: 0,
+                          borderBottom: '1px solid var(--border-subtle)',
+                        }}
+                      >
+                        <div style={{ width: 40, height: 4, borderRadius: 2, background: 'var(--border-strong)' }} />
+                      </div>
+                      <CartPanel />
+                    </div>
+                  </>
+                )}
               </motion.div>
             )}
 
