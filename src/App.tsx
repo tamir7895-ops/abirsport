@@ -16,6 +16,7 @@ import type { Template } from './components/shared/TemplatesModal'
 import { useUiStore } from './store/uiStore'
 import { useDesignStore } from './store/designStore'
 import { useIsMobile } from './hooks/useIsMobile'
+import { assetUrl } from './lib/assetUrl'
 import { loadDesign, fetchEquipment } from './lib/api'
 import toast from 'react-hot-toast'
 
@@ -164,7 +165,7 @@ export default function App() {
                   <ErrorBoundary>
                     <Suspense fallback={
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text-tertiary)', flexDirection: 'column', gap: 12 }}>
-                        <img src="/logo-mark.svg" alt="" style={{ width: 48, height: 48, opacity: 0.3 }} />
+                        <img src={assetUrl('logo-mark.svg')} alt="" style={{ width: 48, height: 48, opacity: 0.3 }} />
                         <div>{t('scene.loading')}</div>
                       </div>
                     }>

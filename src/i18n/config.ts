@@ -18,7 +18,8 @@ i18n.use(initReactI18next).init({
 // Load translations dynamically
 async function loadTranslations(lang: string) {
   try {
-    const response = await fetch(`/locales/${lang}/translation.json`)
+    const base = import.meta.env.BASE_URL || '/'
+    const response = await fetch(`${base}locales/${lang}/translation.json`)
     const data = await response.json()
     i18n.addResourceBundle(lang, 'translation', data, true, true)
   } catch (e) {

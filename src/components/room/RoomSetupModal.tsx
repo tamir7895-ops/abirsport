@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDesignStore, RoomShape } from '../../store/designStore'
 import { useUiStore } from '../../store/uiStore'
+import { assetUrl } from '../../lib/assetUrl'
 
 const SHAPES: { key: RoomShape; svg: string }[] = [
   { key: 'rectangle', svg: 'M2,2 L18,2 L18,14 L2,14 Z' },
@@ -66,7 +67,7 @@ export function RoomSetupModal() {
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: '#1a1a2e', margin: 0 }}>{t('room.title')}</h2>
-          <img src="/logo-mark.svg" alt="" style={{ width: 28, height: 28, opacity: 0.5 }} />
+          <img src={assetUrl('logo-mark.svg')} alt="" style={{ width: 28, height: 28, opacity: 0.5 }} />
         </div>
         <p style={{ fontSize: 13, color: '#9ca3af', margin: '0 0 20px' }}>{t('room.subtitle')}</p>
 

@@ -7,6 +7,7 @@ import { useIsMobile } from '../../hooks/useIsMobile'
 import type { Category, Equipment } from '../../types'
 import { EquipmentCard } from './EquipmentCard'
 import { Logo } from '../shared/Logo'
+import { assetUrl } from '../../lib/assetUrl'
 
 export function CatalogPanel() {
   const { t } = useTranslation()
@@ -214,7 +215,7 @@ export function CatalogPanel() {
         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
         background: 'var(--bg-0)',
       }}>
-        <img src="/favicon.svg" alt="" style={{ width: 16, height: 16, opacity: 0.4 }} />
+        <img src={assetUrl('favicon.svg')} alt="" style={{ width: 16, height: 16, opacity: 0.4 }} />
         <span style={{ fontSize: 9, color: 'var(--text-tertiary)', fontWeight: 600, letterSpacing: '0.08em' }}>POWERED BY ABIR SPORT</span>
       </div>
     </div>

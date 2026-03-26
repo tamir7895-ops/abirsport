@@ -7,6 +7,7 @@ import { Room } from './Room'
 import { EquipmentBox } from './EquipmentBox'
 import { useDesignStore } from '../../store/designStore'
 import { useUiStore } from '../../store/uiStore'
+import { assetUrl } from '../../lib/assetUrl'
 import toast from 'react-hot-toast'
 
 function TopDownCamera({ active }: { active: boolean }) {
@@ -175,7 +176,7 @@ export function Scene() {
         <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
           <div style={{ textAlign: 'center', color: '#9ca3af' }}>
             <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'center' }}>
-              <img src="/logo-mark.svg" alt="Abir Sport" style={{ width: 56, height: 56, opacity: 0.3 }} />
+              <img src={assetUrl('logo-mark.svg')} alt="Abir Sport" style={{ width: 56, height: 56, opacity: 0.3 }} />
             </div>
             <div style={{ fontSize: 15, fontWeight: 500 }}>{t('scene.addEquipment')}</div>
             <div style={{ fontSize: 12, marginTop: 6 }}>{t('scene.dragOrAutoArrange')}</div>
@@ -240,7 +241,7 @@ export function Scene() {
 
       {/* Bottom-left: brand watermark */}
       <div style={{ position: 'absolute', bottom: 12, left: 12, direction: 'ltr', display: 'flex', alignItems: 'center', gap: 6, opacity: 0.4 }}>
-        <img src="/favicon.svg" alt="" style={{ width: 20, height: 20 }} />
+        <img src={assetUrl('favicon.svg')} alt="" style={{ width: 20, height: 20 }} />
         <span style={{ fontSize: 10, color: '#6b7280', fontWeight: 600, fontFamily: 'Heebo, sans-serif' }}>ABIR SPORT</span>
       </div>
 
