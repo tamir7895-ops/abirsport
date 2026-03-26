@@ -122,7 +122,7 @@ export function EquipmentBox({ item, allItems }: Props) {
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
     >
-      <group opacity={isDragging ? 0.8 : 1}>
+      <group>
         <EquipmentModel
           w={w} d={d} h={h}
           color={modelColor}

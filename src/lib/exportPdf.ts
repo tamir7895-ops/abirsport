@@ -65,7 +65,7 @@ export async function exportQuotePdf(
     }
 
     const eq = item.equipment
-    const lineTotal = eq.price * item.quantity
+    const lineTotal = (eq.price ?? 0) * item.quantity
 
     // Alternating row bg
     if (placedItems.indexOf(item) % 2 === 1) {
@@ -93,7 +93,7 @@ export async function exportQuotePdf(
   doc.line(margin, y, pageW - margin, y)
   y += 10
 
-  const subtotal = placedItems.reduce((sum, i) => sum + i.equipment.price * i.quantity, 0)
+  const subtotal = placedItems.reduce((sum, i) => sum + (i.equipment.price ?? 0) * i.quantity, 0)
   const vatAmount = subtotal * VAT
   const grandTotal = subtotal + vatAmount
 

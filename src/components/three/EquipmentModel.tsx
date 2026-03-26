@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+// three.js types used implicitly via R3F
 
 interface ModelProps {
   w: number  // width in meters
@@ -108,7 +108,7 @@ function SpinningBikeModel({ w, d, h, color }: ModelProps) {
 }
 
 // ─── ROWING MACHINE ───────────────────────────────────────────────────────────
-function RowingModel({ w, d, h, color }: ModelProps) {
+function RowingModel({ w, d, color }: ModelProps) {
   const dark = '#555566'
   return (
     <group>

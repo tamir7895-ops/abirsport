@@ -9,11 +9,11 @@ export function sendWhatsApp(
   designName: string,
   shareUrl?: string | null,
 ) {
-  const subtotal = placedItems.reduce((sum, i) => sum + i.equipment.price * i.quantity, 0)
+  const subtotal = placedItems.reduce((sum, i) => sum + (i.equipment.price ?? 0) * i.quantity, 0)
   const grandTotal = Math.round(subtotal * (1 + VAT))
 
   const itemLines = placedItems.map(
-    (item) => `• ${item.equipment.name_he} — ₪${Number(item.equipment.price).toLocaleString()} × ${item.quantity}`
+    (item) => `• ${item.equipment.name_he} — ₪${Number(item.equipment.price ?? 0).toLocaleString()} × ${item.quantity}`
   ).join('\n')
 
   const message = [
