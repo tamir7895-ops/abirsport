@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    direction: rtl;
+    font-family: 'Heebo', sans-serif;
+    background-color: var(--bg-0);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+
+    /* Design tokens — Light theme */
+    --bg-0: #ffffff;
+    --bg-1: #f8f9fa;
+    --bg-2: #f1f3f5;
+    --bg-3: #e9ecef;
+    --border-subtle: rgba(0,0,0,0.06);
+    --border-medium: rgba(0,0,0,0.10);
+    --border-strong: rgba(0,0,0,0.15);
+    --text-primary: #1a1a2e;
+    --text-secondary: #6b7280;
+    --text-tertiary: #9ca3af;
+    --accent: #E30613;
+    --accent-hover: #c7050f;
+    --accent-muted: rgba(227,6,19,0.08);
+    --glass-bg: rgba(255,255,255,0.92);
+    --glass-blur: blur(20px);
+    --scene-bg: #e8ecf0;
+    --card-bg: #ffffff;
+    --card-hover: #f8f9fa;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-pill: 9999px;
+    --transition: all 0.2s ease;
+  }
+
+  /* Dark theme */
+  .dark {
+    --bg-0: #0f0f1a;
+    --bg-1: #1a1a2e;
+    --bg-2: #252540;
+    --bg-3: #2f2f50;
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-medium: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
+    --text-primary: #f0f0f5;
+    --text-secondary: #9ca3af;
+    --text-tertiary: #6b7280;
+    --accent: #ff2d3b;
+    --accent-hover: #e81828;
+    --accent-muted: rgba(255,45,59,0.12);
+    --glass-bg: rgba(15,15,26,0.92);
+    --scene-bg: #1a1a2e;
+    --card-bg: #1a1a2e;
+    --card-hover: #252540;
+  }
+
+  .dark ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+  .dark ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+
+  * { box-sizing: border-box; }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+}
+
+@layer utilities {
+  .ltr { direction: ltr; }
+  .rtl { direction: rtl; }
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-enter {
+  animation: modalEnter 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Splash screen */
+@keyframes splashPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.85; }
+}
+
+@keyframes splashFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; pointer-events: none; }
+}
+
+.splash-logo {
+  animation: splashPulse 1.5s ease-in-out infinite;
+}
+
+.splash-exit {
+  animation: splashFadeOut 0.5s ease-out forwards;
+}
+
+/* Drag indicator */
+.drag-over-highlight {
+  outline: 3px dashed var(--accent) !important;
+  outline-offset: -3px;
+}

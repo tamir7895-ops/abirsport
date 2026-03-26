@@ -1,0 +1,147 @@
+{
+  "brand": {
+    "name": "אביר ספורט",
+    "subtitle": "סימולטור חדר כושר"
+  },
+  "steps": {
+    "selectEquipment": "בחירת ציוד",
+    "arrangeRoom": "סידור בחדר",
+    "quote": "הצעת מחיר"
+  },
+  "catalog": {
+    "title": "בחר ציוד לחדר הכושר",
+    "search": "חיפוש מכשיר...",
+    "all": "הכל",
+    "noResults": "לא נמצאו מכשירים",
+    "addToCart": "+ הוסף לסל",
+    "inCart": "בסל",
+    "itemsSelected": "פריטים נבחרו",
+    "noItemsSelected": "לא נבחרו פריטים",
+    "toSimulation": "לסימולציה ←",
+    "cm": "ס\"מ",
+    "gridView": "תצוגת רשת",
+    "listView": "תצוגת רשימה"
+  },
+  "cart": {
+    "title": "עגלת קניות",
+    "addFromCatalog": "הוסף ציוד מהקטלוג",
+    "placed": "מוצבים",
+    "inCart": "בסל",
+    "autoArrange": "סדר אוטומטי ✨",
+    "roomSettings": "📐 הגדרות חדר",
+    "toQuote": "הצעת מחיר ←",
+    "dragHint": "גרור מכשיר לחדר להצבה ידנית"
+  },
+  "scene": {
+    "addEquipment": "הוסף מכשיר מהקטלוג",
+    "clickAutoArrange": "לחץ \"סדר אוטומטי\" בפאנל השמאלי",
+    "dragOrAutoArrange": "גרור מכשיר מהסל או לחץ \"סדר אוטומטי\"",
+    "loading": "טוען סצנה...",
+    "topDown": "🗺️ מבט מלמעלה",
+    "threeDView": "📐 תצוגה תלת-מימד",
+    "usedArea": "שטח מנוצל",
+    "collision": "⚠️ התנגשות",
+    "dropHere": "שחרר כאן להצבה",
+    "measureMode": "📏 מצב מדידה",
+    "exportImage": "📷 ייצוא תמונה"
+  },
+  "quote": {
+    "title": "הצעת מחיר",
+    "itemsInGym": "פריטים בחדר הכושר",
+    "noItems": "אין פריטים בחדר",
+    "goBackStep2": "חזור לשלב 2 והצב ציוד בחדר",
+    "equipment": "מכשיר",
+    "brand": "מותג",
+    "dimensions": "מידות (ס\"מ)",
+    "unitPrice": "מחיר יחידה",
+    "qty": "כמות",
+    "total": "סה\"כ",
+    "subtotal": "סה\"כ לפני מע\"מ:",
+    "vat": "מע\"מ 18%:",
+    "grandTotal": "סה\"כ כולל מע\"מ:",
+    "backToSim": "← חזרה לסימולציה",
+    "editCatalog": "ערוך קטלוג",
+    "saveAndShare": "💾 שמור ושתף",
+    "saving": "שומר...",
+    "exportPdf": "📄 ייצוא PDF",
+    "whatsapp": "📱 שלח בוואטסאפ"
+  },
+  "room": {
+    "title": "הגדרת מידות החדר",
+    "subtitle": "הגדר את ממדי חדר הכושר שלך",
+    "small": "קטן",
+    "medium": "בינוני",
+    "large": "גדול",
+    "length": "אורך (מ')",
+    "width": "רוחב (מ')",
+    "height": "גובה (מ')",
+    "floorArea": "שטח רצפה:",
+    "volume": "נפח:",
+    "sqm": "מ\"ר",
+    "cbm": "מ\"ק",
+    "confirm": "אשר",
+    "cancel": "ביטול",
+    "meter": "מטר",
+    "shape": "צורת החדר",
+    "shape_rectangle": "מלבן",
+    "shape_L": "צורת L",
+    "shape_U": "צורת U",
+    "shape_T": "צורת T",
+    "cutWidth": "רוחב חיתוך (מ')",
+    "cutDepth": "עומק חיתוך (מ')"
+  },
+  "share": {
+    "saved": "העיצוב נשמר!",
+    "shareWithClients": "שתף את הקישור עם לקוחות",
+    "copy": "העתק",
+    "copied": "✓ הועתק",
+    "openNewTab": "פתח בטאב חדש ↗",
+    "close": "סגור",
+    "shareButton": "🔗 שיתוף"
+  },
+  "templates": {
+    "title": "תבניות מוכנות",
+    "subtitle": "בחר תבנית להתחלה מהירה",
+    "homeGym": "חדר כושר ביתי",
+    "homeGymDesc": "ציוד בסיסי לאימון ביתי",
+    "studio": "סטודיו קטן",
+    "studioDesc": "סטודיו לאימונים אישיים",
+    "commercial": "חדר כושר מסחרי",
+    "commercialDesc": "חדר כושר מלא לעסק",
+    "crossfit": "קרוספיט בוקס",
+    "crossfitDesc": "מתקן אימון פונקציונלי",
+    "useTemplate": "השתמש בתבנית",
+    "items": "פריטים"
+  },
+  "actions": {
+    "undo": "בטל",
+    "redo": "חזור",
+    "rotate": "סובב",
+    "delete": "הסר",
+    "clone": "שכפל",
+    "note": "הערה"
+  },
+  "toast": {
+    "designSaved": "עיצוב נשמר!",
+    "saveError": "שגיאה בשמירה",
+    "addItemFirst": "הוסף מכשיר לחדר לפני השמירה",
+    "templateLoaded": "תבנית נטענה בהצלחה!",
+    "pdfGenerated": "PDF נוצר בהצלחה!",
+    "imageExported": "תמונה יוצאה בהצלחה!"
+  },
+  "floor": {
+    "title": "סוג רצפה",
+    "rubber": "גומי",
+    "wood": "פרקט",
+    "concrete": "בטון",
+    "turf": "דשא סינטטי"
+  },
+  "history": {
+    "title": "היסטוריית עיצובים",
+    "subtitle": "עיצובים שנשמרו באופן מקומי",
+    "empty": "אין עיצובים שמורים",
+    "load": "טען",
+    "delete": "מחק",
+    "items": "פריטים"
+  }
+}
