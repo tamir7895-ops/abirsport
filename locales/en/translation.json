@@ -1,0 +1,147 @@
+{
+  "brand": {
+    "name": "Abir Sport",
+    "subtitle": "Gym Simulator"
+  },
+  "steps": {
+    "selectEquipment": "Select Equipment",
+    "arrangeRoom": "Arrange Room",
+    "quote": "Price Quote"
+  },
+  "catalog": {
+    "title": "Choose Equipment for Your Gym",
+    "search": "Search equipment...",
+    "all": "All",
+    "noResults": "No equipment found",
+    "addToCart": "+ Add to Cart",
+    "inCart": "in cart",
+    "itemsSelected": "items selected",
+    "noItemsSelected": "No items selected",
+    "toSimulation": "→ To Simulation",
+    "cm": "cm",
+    "gridView": "Grid View",
+    "listView": "List View"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "addFromCatalog": "Add equipment from catalog",
+    "placed": "placed",
+    "inCart": "in cart",
+    "autoArrange": "Auto Arrange ✨",
+    "roomSettings": "📐 Room Settings",
+    "toQuote": "→ Price Quote",
+    "dragHint": "Drag equipment to room for manual placement"
+  },
+  "scene": {
+    "addEquipment": "Add equipment from catalog",
+    "clickAutoArrange": "Click \"Auto Arrange\" in the side panel",
+    "dragOrAutoArrange": "Drag from cart or click \"Auto Arrange\"",
+    "loading": "Loading scene...",
+    "topDown": "🗺️ Top View",
+    "threeDView": "📐 3D View",
+    "usedArea": "Used area",
+    "collision": "⚠️ Collision",
+    "dropHere": "Drop here to place",
+    "measureMode": "📏 Measure Mode",
+    "exportImage": "📷 Export Image"
+  },
+  "quote": {
+    "title": "Price Quote",
+    "itemsInGym": "items in gym",
+    "noItems": "No items in room",
+    "goBackStep2": "Go back to step 2 and place equipment",
+    "equipment": "Equipment",
+    "brand": "Brand",
+    "dimensions": "Dimensions (cm)",
+    "unitPrice": "Unit Price",
+    "qty": "Qty",
+    "total": "Total",
+    "subtotal": "Subtotal:",
+    "vat": "VAT 18%:",
+    "grandTotal": "Total incl. VAT:",
+    "backToSim": "← Back to Simulation",
+    "editCatalog": "Edit Catalog",
+    "saveAndShare": "💾 Save & Share",
+    "saving": "Saving...",
+    "exportPdf": "📄 Export PDF",
+    "whatsapp": "📱 Send via WhatsApp"
+  },
+  "room": {
+    "title": "Room Dimensions",
+    "subtitle": "Set your gym room dimensions",
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large",
+    "length": "Length (m)",
+    "width": "Width (m)",
+    "height": "Height (m)",
+    "floorArea": "Floor area:",
+    "volume": "Volume:",
+    "sqm": "sqm",
+    "cbm": "cbm",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "meter": "meter",
+    "shape": "Room Shape",
+    "shape_rectangle": "Rectangle",
+    "shape_L": "L-Shape",
+    "shape_U": "U-Shape",
+    "shape_T": "T-Shape",
+    "cutWidth": "Cut Width (m)",
+    "cutDepth": "Cut Depth (m)"
+  },
+  "share": {
+    "saved": "Design Saved!",
+    "shareWithClients": "Share the link with clients",
+    "copy": "Copy",
+    "copied": "✓ Copied",
+    "openNewTab": "Open in new tab ↗",
+    "close": "Close",
+    "shareButton": "🔗 Share"
+  },
+  "templates": {
+    "title": "Ready Templates",
+    "subtitle": "Choose a template for a quick start",
+    "homeGym": "Home Gym",
+    "homeGymDesc": "Basic equipment for home workout",
+    "studio": "Small Studio",
+    "studioDesc": "Studio for personal training",
+    "commercial": "Commercial Gym",
+    "commercialDesc": "Full gym for business",
+    "crossfit": "CrossFit Box",
+    "crossfitDesc": "Functional training facility",
+    "useTemplate": "Use Template",
+    "items": "items"
+  },
+  "actions": {
+    "undo": "Undo",
+    "redo": "Redo",
+    "rotate": "Rotate",
+    "delete": "Delete",
+    "clone": "Clone",
+    "note": "Note"
+  },
+  "toast": {
+    "designSaved": "Design saved!",
+    "saveError": "Error saving design",
+    "addItemFirst": "Add equipment before saving",
+    "templateLoaded": "Template loaded successfully!",
+    "pdfGenerated": "PDF generated successfully!",
+    "imageExported": "Image exported successfully!"
+  },
+  "floor": {
+    "title": "Floor Type",
+    "rubber": "Rubber",
+    "wood": "Wood",
+    "concrete": "Concrete",
+    "turf": "Synthetic Turf"
+  },
+  "history": {
+    "title": "Design History",
+    "subtitle": "Locally saved designs",
+    "empty": "No saved designs",
+    "load": "Load",
+    "delete": "Delete",
+    "items": "items"
+  }
+}
